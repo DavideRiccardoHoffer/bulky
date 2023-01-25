@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyBookWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230124100042_init")]
+    [Migration("20230125071532_init")]
     partial class init
     {
         /// <inheritdoc />
