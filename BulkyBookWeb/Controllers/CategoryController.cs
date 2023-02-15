@@ -30,6 +30,10 @@ namespace BulkyBookWeb.Controllers
         {
 			if (obj.Name == obj.DisplayOrder.ToString())
 			{
+				ModelState.AddModelError(nameof(obj.Name), $"The name of property {nameof(obj.DisplayOrder)} cannot exactly match the name of property {nameof(obj.Name)}");
+			}
+			if (obj.Name == obj.DisplayOrder.ToString())
+			{
 				ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
 			}
 			if (ModelState.IsValid)
