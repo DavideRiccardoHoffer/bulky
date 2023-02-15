@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace BulkyBookWeb.Models
 {
@@ -8,7 +9,12 @@ namespace BulkyBookWeb.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public int DisplayOrder { get; set; }
+		[DisplayName("Display Order")]
+
+		//vedasi https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.rangeattribute
+
+		[Range(1, 100, ErrorMessage = "{0} must be between {1} and {2}")]
+		public int DisplayOrder { get; set; }
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
     }
 }
