@@ -1,7 +1,7 @@
 ﻿using BulkyBook.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BulkyBook.Data
+namespace BulkyBook.DataAccess1
 {
     public class ApplicationDbContext : DbContext
     {

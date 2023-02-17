@@ -1,4 +1,4 @@
-﻿using BulkyBook.Data;
+﻿using BulkyBook.DataAccess1;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 //gang gang bro
@@ -45,18 +45,25 @@ namespace BulkyBookWeb.Controllers
             }
             return View(obj);
         }
+        //GET Edit
 		public IActionResult Edit(int id)
 		{
 			if (id == null || id == 0)
 			{
 				return NotFound();
 			}
-			var categoryFromDb = _db.Categories.Find(id);
-			if (categoryFromDb == null)
+			//var categoryFromDb = _db.Categories.Find(id);
+			//if (categoryFromDb == null)
+			//{
+			//	return NotFound();
+			//}
+			//return View(categoryFromDb);
+			var categoryFromDbFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
+			if (categoryFromDbFirst == null)
 			{
 				return NotFound();
 			}
-			return View(categoryFromDb);
+			return View(categoryFromDbFirst);
 
 		}
 	
@@ -90,13 +97,19 @@ namespace BulkyBookWeb.Controllers
             {
                 return NotFound();
             }
-            var categoryFromDb = _db.Categories.Find(id);
-            if (categoryFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(categoryFromDb);
-        }
+			//var categoryFromDb = _db.Categories.Find(id);
+			//if (categoryFromDb == null)
+			//{
+			//    return NotFound();
+			//}
+			//return View(categoryFromDb);
+			var categoryFromDbFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
+			if (categoryFromDbFirst == null)
+			{
+				return NotFound();
+			}
+			return View(categoryFromDbFirst);
+		}
         //POST Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -106,12 +119,19 @@ namespace BulkyBookWeb.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Categories.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _db.Categories.Remove(obj);
+			//var obj = _db.Categories.Find(id);
+			//if (obj == null)
+			//{
+			//	  return NotFound();
+			//}
+			// _db.Categories.Remove(obj);
+			var categoryFromDbFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
+			if (categoryFromDbFirst == null)
+			{
+				return NotFound();
+			}
+			_db.Categories.Remove(categoryFromDbFirst);
+
             _db.SaveChanges();
 			TempData["success"] = "Category deleted successfully";
 			return RedirectToAction(nameof(Index));
