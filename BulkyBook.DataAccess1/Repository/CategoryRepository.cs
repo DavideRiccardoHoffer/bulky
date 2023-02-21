@@ -15,10 +15,6 @@ namespace BulkyBook.DataAccess1.Repository
 		{
 			_db = db;
 		}
-		public void Save()
-		{
-			_db.SaveChanges();
-		}
 		public void Update(Category category)
 		{
 			_db.Categories.Update(category);
