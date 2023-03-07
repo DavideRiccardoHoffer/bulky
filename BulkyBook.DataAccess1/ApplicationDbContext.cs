@@ -1,4 +1,4 @@
-﻿using BulkyBook.Models;
+﻿using BulkyBook.Models1;
 using Microsoft.EntityFrameworkCore;
 
 namespace BulkyBook.DataAccess1
@@ -9,5 +9,6 @@ namespace BulkyBook.DataAccess1
         {
         }
         public DbSet<Category> Categories { get; set; }
-    }
+		public DbSet<CoverType> CoverTypes { get; set; } = null!;
+	}
 }

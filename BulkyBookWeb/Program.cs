@@ -3,6 +3,8 @@ using BulkyBook.DataAccess1;
 using Microsoft.EntityFrameworkCore;
 using BulkyBook.DataAccess1.Repository;
 using BulkyBook.DataAccess1.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,9 +35,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+name: "default",
+    pattern: "{ area = Customer}/{ controller = Home}/{ action = Index}/{ id ?}");
 
 app.Run();
