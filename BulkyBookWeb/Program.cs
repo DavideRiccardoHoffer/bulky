@@ -1,24 +1,18 @@
-
-using BulkyBook.DataAccess1;
-using Microsoft.EntityFrameworkCore;
-using BulkyBook.DataAccess1.Repository;
 using BulkyBook.DataAccess1.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
-using System;
+using BulkyBook.DataAccess1.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileSystemGlobbing.Internal;
+using BulkyBook.DataAccess1;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
-////builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();//UnitOfWork si occupa della gestione di tutti i repository
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+   if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
@@ -28,15 +22,11 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 app.MapControllerRoute(
 name: "default",
-    pattern: "{ area = Customer}/{ controller = Home}/{ action = Index}/{ id ?}");
-
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 app.Run();
