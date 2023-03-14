@@ -5,7 +5,14 @@
     {
       "library": "bootstrap@5.2.3",
       "destination": "wwwroot/lib/bootstrap/dist/",
-        "files": ["css/*", "js/*"]
+      "files": [ "css/*", "js/*" ]
+    },
+    {
+
+      "library": "sweetalert2@11.7.2",
+
+      "destination": "wwwroot/lib/sweetalert2/dist/"
+
     }
   ]
 }
