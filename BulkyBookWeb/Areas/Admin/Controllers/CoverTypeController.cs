@@ -46,7 +46,7 @@ namespace BulkyBookWeb.Controllers
 				//_db.Save();
 				_unitOfWork.CoverType.Add(obj);
 				_unitOfWork.Save();
-				TempData["success"] = "Category created successfully";
+				TempData["success"] = "CoverType created successfully";
 				return RedirectToAction("Index");
             }
             return View(obj);
